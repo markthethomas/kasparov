@@ -6,27 +6,23 @@ const Draggable = require('react-draggable');
 const chess = require('chess.js');
 const game = new chess();
 
+game.move({
+  from: 'g2',
+  to: 'g3'
+});
+
 const App = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       game,
-      pieces: boardData.squares.map((row) => {
-          return row.map((square) => {
-            const fetchPiece = game.get(square);
-            let piece = (fetchPiece && {
-              type: fetchPiece.type,
-              color: fetchPiece.color
-            })
-            return piece;
-          })
-        })
+      pieces: []
     };
   },
-  componentDidMount: function() {
+  updatePieces(){
     this.setState({
       pieces: boardData.squares.map((row) => {
           return row.map((square) => {
-            const fetchPiece = game.get(square);
+            const fetchPiece = this.state.game.get(square);
             let piece = (fetchPiece && {
               type: fetchPiece.type,
               color: fetchPiece.color
@@ -35,12 +31,12 @@ const App = React.createClass({
           })
         })
     });
+
+  },
+  componentDidMount() {
+    this.updatePieces();
   },
   handleMove() {
-    this.state.game.move({
-      from: 'g2',
-      to: 'g3'
-    });
     this.state.game.move({
       from: 'h2',
       to: 'h4'
