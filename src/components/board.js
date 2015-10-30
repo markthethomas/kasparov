@@ -1,12 +1,12 @@
 const React = require('react');
-const boardData = require('../data/board');
+const BoardSquares = require('../data/board').squares;
 
 const Board = React.createClass({
   render() {
     return (
       <div>
         {
-          boardData.map((row, rowIndex) => {
+          BoardSquares.map((row, rowIndex) => {
           return row.map((square, index) => {
             const darkGreen = '#6A9037';
             const lightGreen = '#85AF34';
