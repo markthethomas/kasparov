@@ -9,12 +9,17 @@ const App = React.createClass({
     return (
       <div>
         <Board>
-          <Draggable bounds="parent" grid={[60, 60]}>
+          <Draggable
+            start={{x: 0, y: 0}}
+            grid={[60, 60]}>
             <div style={{
                 width: 60,
+                top: 9,
                 height: 60,
+                position: 'absolute',
                 backgroundColor: 'blue'
-              }}></div>
+              }}>
+            </div>
           </Draggable>
         </Board>
       </div>
